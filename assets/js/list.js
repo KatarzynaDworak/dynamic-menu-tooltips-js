@@ -43,52 +43,50 @@ const list = [
         link: '#Osadzanie',
     }
 ];
-
-const ulElement = document.createElement('ul');
-ulElement.className = 'article__list';
+//menu poziom 1
+const ulElement = document.querySelector('.article__list');
+console.log(ulElement);
 
 list.forEach(function(el) {
     if(el.parentId === null) {
         const liElement = document.createElement('li');
-        liElement.setAttribute('dataset.id', el.id);
-        //PYTANIE NA KONSULTACJE: dataset.id czy o to chodzi?
-        liElement.innerText = el.text;
-        liElement.setAttribute('href', el.link);
-
-        
+        liElement.setAttribute('data-id', el.id);
+        const aElement = document.createElement('a');
+        liElement.appendChild(aElement);
+        aElement.innerText = el.text;
+        aElement.setAttribute('href', el.link);
+        //dodanie menu do elementu .article__list
         ulElement.appendChild(liElement);
-        // console.log(ulElement); ////PYTANIE NA KONSULTACJE: tworzy się 3x (przy wyjęciu liElemet i ulElement 
-        // na zewnątrz pętli, pętka tworzy tylko ostatni liElement)
     }
 })
-//tworzę poziom drugi zagniezdzenia
 
-//wyszukuję wszystkie utworzone elementy li (pierwszego rzędu) 
-// i tworzę na nich pętlę
-const liList = ulElement.querySelectorAll('li');
-liList.forEach(function(el) {
-   if((el.parentId === el.id)) {
+//menu poziom 2
+const liElementList = ulElement.querySelectorAll('li');
 
-       // pobieram id danego elementu
-        const id = Number(el.dataset.id);
-        
-        // w tablicy list wyszukuję wszystkie obiekty, 
-        // które posiadają parentId równy pobranemu id
-        const children = list.filter(function(element) {
-            return element.parentId === id
-            
-        // dodaję dzieci w odpowiednie miejsca - parentId === id
-        ////PYTANIE NA KONSULTACJE: jak dodać elementy (ulElementLev2)? 
-        ////PYTANIE NA KONSULTACJE: czy tworzymy dzieci i dodajemy w tej samej pętli?
-        // const ulElementLev2 = document.createElement('ul');
-        
-        // const liElementLev2 = document.createElement('li');
-        // ulElementLev2.appendChild(liElementLev2);
-        
-        // const aElementLev2 = document.createElement('a');
-        // liElementLev2.appendChild(aElementLev2);
-    }); 
-}
+// tworzymy menu poziom 2 przez pętlę dla elementów, które mają rodzica i numer się zgadza
+liElementList.forEach(function(parent) {
+    const id = Number(parent.dataset.id);
+
+    //w tablicy list wyszukuję wszystkie obiekty, które posiadają parentId równy pobranemu id
+    const children = list.filter(function(element) {
+        return element.parentId === id
+    });
+
+    if(parent.children.length > 0) {
+        const ulElement = document.createElement('ul');
+
+    children.forEach(function(child) {
+        const liElement = document.createElement('li');
+        ulElement.appendChild(liElement);
+        liElement.setAttribute('data-id', child.id);
+        const aElement = document.createElement('a');
+        liElement.appendChild(aElement);
+        aElement.setAttribute('href', child.link);
+        aElement.innerText = child.text;
+    })
+    //dodać children do menu jako poziom 2
+    // ???.appendChild(ulElement);
+
+    }
 })
-
 

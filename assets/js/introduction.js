@@ -5,7 +5,7 @@ tooltipList.forEach(function(el) {
     //pobranie zawartości
     const classOfTooltip = el.className; // nazwa klasy
     const address = el.dataset.url; //link  el.dataset.url;
-    const type = el.dataset.tooltipType; //tym tekst /img
+    const type = el.dataset.tooltipType; //typ tekst /img
     const content = el.dataset.tooltipContent; // wnętrze dymka
     const text = el.innerText;  // tekst między znacznikami
     
@@ -26,16 +26,18 @@ tooltipList.forEach(function(el) {
     //dla typu text
     if(type === 'text') {
         spanElement.className = 'tooltip__box tooltip__box--text';
+        spanElement.innerText = content;
     //dla typu image
     } else if(type === 'image') {
         spanElement.className = 'tooltip__box tooltip__box--image';
         const imageElement = document.createElement('img');
         spanElement.appendChild(imageElement);
+        imageElement.className = 'tooltip__image';
+        const imageContent = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Firefox_57.0.png/640px-Firefox_57.0.png'
+        imageElement.setAttribute('src', imageContent);
     }
-    
-    //1. dymek tekstowy się pojawia, ale bez treści
-    //2. dodać dymek obrazek -> dodać atrybut src do imageElement + link do obrazka
 });
+
 
 
 
