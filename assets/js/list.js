@@ -57,7 +57,7 @@ list.forEach(function(el) {
 
         
         ulElement.appendChild(liElement);
-        console.log(ulElement); ////PYTANIE NA KONSULTACJE: tworzy się 3x (przy wyjęciu liElemet i ulElement 
+        // console.log(ulElement); ////PYTANIE NA KONSULTACJE: tworzy się 3x (przy wyjęciu liElemet i ulElement 
         // na zewnątrz pętli, pętka tworzy tylko ostatni liElement)
     }
 })
@@ -90,5 +90,5 @@ liList.forEach(function(el) {
     }); 
 }
 })
-console.log(children);
+
 
