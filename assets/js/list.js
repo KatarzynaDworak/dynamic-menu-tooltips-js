@@ -45,7 +45,6 @@ const list = [
 ];
 //menu poziom 1
 const ulElement = document.querySelector('.article__list');
-console.log(ulElement);
 
 list.forEach(function(el) {
     if(el.parentId === null) {
@@ -63,11 +62,9 @@ list.forEach(function(el) {
 //menu poziom 2
 const liElementList = ulElement.querySelectorAll('li');
 
-// tworzymy menu poziom 2 przez pętlę dla elementów, które mają rodzica i numer się zgadza
 liElementList.forEach(function(parent) {
     const id = Number(parent.dataset.id);
 
-    //w tablicy list wyszukuję wszystkie obiekty, które posiadają parentId równy pobranemu id
     const children = list.filter(function(element) {
         return element.parentId === id
     });
@@ -84,9 +81,9 @@ liElementList.forEach(function(parent) {
         aElement.setAttribute('href', child.link);
         aElement.innerText = child.text;
     })
-    //dodać children do menu jako poziom 2
-    // ???.appendChild(ulElement);
 
+    //dodaję children do menu jako poziom 2
+    parent.appendChild(ulElement);
     }
 })
 
