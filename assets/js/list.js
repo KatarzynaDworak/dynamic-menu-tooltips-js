@@ -1,5 +1,4 @@
-//  Cześć 53-60 powtarza się z tą z linii 76-82. 
-//  Postaraj się stworzyć funkcję i uruchomić ją w obu tych miejscach.
+//  level drugi przeskoczył do level 1, poza tym jest ok
 
 const list = [
     {
@@ -51,14 +50,15 @@ const ulElement = document.querySelector('.article__list');
 
 list.forEach(function(el) {
     if(el.parentId === null) {
-        const liElement = document.createElement('li'); //
-        liElement.setAttribute('data-id', el.id); //
-        const aElement = document.createElement('a'); //
-        liElement.appendChild(aElement); //
-        aElement.innerText = el.text; //
-        aElement.setAttribute('href', el.link); //
-        //dodanie menu do elementu .article__list
-        ulElement.appendChild(liElement); //
+        createMenu(el);
+        // const liElement = document.createElement('li'); //
+        // liElement.setAttribute('data-id', el.id); //
+        // const aElement = document.createElement('a'); //
+        // liElement.appendChild(aElement); //
+        // aElement.innerText = el.text; //
+        // aElement.setAttribute('href', el.link); //
+        // //dodanie menu do elementu .article__list
+        // ulElement.appendChild(liElement); //
     }
 })
 
@@ -76,17 +76,29 @@ liElementList.forEach(function(parent) {
         const ulElement = document.createElement('ul');
 
     children.forEach(function(child) {
-        const liElement = document.createElement('li'); //
-        ulElement.appendChild(liElement); //
-        liElement.setAttribute('data-id', child.id); //
-        const aElement = document.createElement('a'); //
-        liElement.appendChild(aElement); //
-        aElement.setAttribute('href', child.link);  //
-        aElement.innerText = child.text; //
+        createMenu(child);
+        // const liElement = document.createElement('li'); //
+        // ulElement.appendChild(liElement); //
+        // liElement.setAttribute('data-id', child.id); //
+        // const aElement = document.createElement('a'); //
+        // liElement.appendChild(aElement); //
+        // aElement.setAttribute('href', child.link);  //
+        // aElement.innerText = child.text; //
     })
 
     //dodaję children do menu jako poziom 2
     parent.appendChild(ulElement);
     }
 })
+
+function createMenu (el) {
+    const liElement = document.createElement('li'); //
+    liElement.setAttribute('data-id', el.id); //
+    const aElement = document.createElement('a'); //
+    liElement.appendChild(aElement); //
+    aElement.innerText = el.text; //
+    aElement.setAttribute('href', el.link); //
+    //dodanie menu do elementu .article__list
+    ulElement.appendChild(liElement); //
+}
 
