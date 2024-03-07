@@ -1,4 +1,3 @@
-//  level drugi przeskoczył do level 1, poza tym jest ok
 
 const list = [
     {
@@ -50,15 +49,7 @@ const ulElement = document.querySelector('.article__list');
 
 list.forEach(function(el) {
     if(el.parentId === null) {
-        createMenu(el);
-        // const liElement = document.createElement('li'); //
-        // liElement.setAttribute('data-id', el.id); //
-        // const aElement = document.createElement('a'); //
-        // liElement.appendChild(aElement); //
-        // aElement.innerText = el.text; //
-        // aElement.setAttribute('href', el.link); //
-        // //dodanie menu do elementu .article__list
-        // ulElement.appendChild(liElement); //
+        createMenu(el, ulElement);
     }
 })
 
@@ -76,14 +67,7 @@ liElementList.forEach(function(parent) {
         const ulElement = document.createElement('ul');
 
     children.forEach(function(child) {
-        createMenu(child);
-        // const liElement = document.createElement('li'); //
-        // ulElement.appendChild(liElement); //
-        // liElement.setAttribute('data-id', child.id); //
-        // const aElement = document.createElement('a'); //
-        // liElement.appendChild(aElement); //
-        // aElement.setAttribute('href', child.link);  //
-        // aElement.innerText = child.text; //
+        createMenu(child, ulElement);
     })
 
     //dodaję children do menu jako poziom 2
@@ -91,7 +75,7 @@ liElementList.forEach(function(parent) {
     }
 })
 
-function createMenu (el) {
+function createMenu (el, parent) {
     const liElement = document.createElement('li'); //
     liElement.setAttribute('data-id', el.id); //
     const aElement = document.createElement('a'); //
@@ -99,6 +83,6 @@ function createMenu (el) {
     aElement.innerText = el.text; //
     aElement.setAttribute('href', el.link); //
     //dodanie menu do elementu .article__list
-    ulElement.appendChild(liElement); //
+    parent.appendChild(liElement); //
 }
 
