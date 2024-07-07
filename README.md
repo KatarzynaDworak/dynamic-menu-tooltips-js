@@ -1,234 +1,161 @@
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+# Thanks for viewing my Project ✨
 
-&nbsp;
+## :star: Demonstration of the Project: ([Dynamic Gallery Slider](https://katarzynadworak.github.io/dynamic-gallery-slider/))
+<br />
 
+## Main goal of my work was to:
+1. **Interactive UI Elements:** create dynamic and interactive user interface elements using JavaScript, enhancing user engagement and experience.
+2. **Data Handling and Manipulation:** efficiently manage data through manipulation and processing techniques to ensure optimal performance and functionality.
+3. **Event-Driven Programming:** implement event-driven programming paradigms to respond to user actions and system events seamlessly.
+4. **Modular and Scalable Architecture:** develop a modular and scalable architecture using JavaScript design patterns to facilitate code maintenance and future enhancements.
+5. **Responsive Design Integration:** integrate responsive design principles to ensure compatibility and usability across various devices and screen sizes.
+6. **Documentation and Code Quality:** maintain high-quality code standards and provide comprehensive documentation for easy understanding and collaboration.
+<br />
 
+## Solutions provided in the project
+**1. Interactive UI Elements:**
+Example: Implementing a carousel/slider functionality with smooth transitions and interactive controls.
 
-# JavaScript: Elementy DOM
+   const initSlider = function() {
+       const sliderItems = document.querySelectorAll('.slider-item');
+       const nextBtn = document.querySelector('.next-btn');
+       const prevBtn = document.querySelector('.prev-btn');
+       
+       let currentIndex = 0;
+       
+       nextBtn.addEventListener('click', () => {
+           currentIndex = (currentIndex + 1) % sliderItems.length;
+           updateSlider();
+       });
+       
+       prevBtn.addEventListener('click', () => {
+           currentIndex = (currentIndex - 1 + sliderItems.length) % sliderItems.length;
+           updateSlider();
+       });
+       
+       function updateSlider() {
+           sliderItems.forEach((item, index) => {
+               item.style.display = index === currentIndex ? 'block' : 'none';
+           });
+       }
+       
+       updateSlider();
+   }
+   
+   document.addEventListener('DOMContentLoaded', initSlider);
 
-W tym projekcie będziemy musieli utworzyć nowe elementy w drzewie DOM, wyszukać już istniejące i dodać do nich odpowiednie klasy, atrybuty czy zawartość.
+**2. Data Handling and Manipulation:**
+Example: Filtering and manipulating arrays of data based on user input or predefined conditions.
 
-## Jaki mamy problem do rozwiązania?
+      const data = [
+          { id: 1, name: 'John', age: 30 },
+          { id: 2, name: 'Jane', age: 25 },
+          { id: 3, name: 'Doe', age: 35 }
+      ];
+      
+      const filteredData = data.filter(item => item.age > 30);
+      console.log(filteredData);
+      Event-Driven Programming:
+      
+      Example: Handling form submissions and validating user inputs using event listeners.
+      javascript
+      Skopiuj kod
+      const form = document.querySelector('form');
+      
+      form.addEventListener('submit', function(event) {
+          event.preventDefault();
+          const formData = new FormData(this);
+          const username = formData.get('username');
+          const password = formData.get('password');
+          
+          // Validate username and password
+          if (username && password) {
+              // Process form data
+              console.log('Username:', username);
+              console.log('Password:', password);
+          } else {
+              console.error('Invalid username or password');
+          }
+      });
+**3. Modular and Scalable Architecture:***
+Example: Using ES6 modules or JavaScript classes to encapsulate functionality and promote code reusability.
 
-Otrzymaliśmy gotowy kod HTML i CSS, ale niestety nie możemy go modyfikować. Wszystko musi zostać zrobione z poziomu kodu JS.
+      // Module 1: Utilities.js
+      export const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+      
+      // Module 2: User.js
+      import { capitalize } from './Utilities.js';
+      
+      export class User {
+          constructor(name) {
+              this.name = capitalize(name);
+          }
+          
+          greet() {
+              console.log(`Hello, ${this.name}!`);
+          }
+      }
+      
+      // Usage
+      import { User } from './User.js';
+      
+      const user1 = new User('john');
+      user1.greet(); // Output: Hello, John!
+   
+**4. Responsive Design Integration:**
+Example: Using CSS media queries and JavaScript to adapt the layout and behavior based on screen size.
 
-Zleceniodawca nie chce nam powiedzieć, dlaczego tak jest. Godzimy się na jego warunki, ponieważ chcemy zdobyć komercyjne doświadczenie!
+      /* styles.css */
+      @media screen and (max-width: 768px) {
+          .container {
+              flex-direction: column;
+          }
+      }
 
-### Problem 1: Wygenerowanie linków z *tooltipem* po najechaniu kursorem na element
+**5. Documentation and Code Quality:**
+Example: Providing clear comments, README files, and inline documentation to enhance code readability and facilitate collaboration.
+javascript
 
-> *Tooltip* to dymek z dodatkową informacją. Pojawia się on w okolicy elementu po kliknięciu lub najechaniu na niego. Przykład możemy zobaczyć [tutaj](https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip).
+       // Function to calculate factorial
+       const factorial = (n) => {
+          // Check for negative numbers
+          if (n < 0) {
+              throw new Error('Factorial of negative numbers is undefined');
+          }
+       
+       // Base case: factorial of 0 is 1
+       if (n === 0) {
+           return 1;
+       }
+       
+       // Recursive case
+       return n * factorial(n - 1);
+       }
+<br />
+<br />
 
-> Problem rozwiązujemy w pliku `./assets/js/introduction.js`
+## 🛠️ Languages and Tools used: 
 
-Musimy zmodyfikować element o klasie `.tooltip` w taki sposób, aby generował on prawidłową strukturę zgodną z CSS. Obecnie ten element wygląda w tak:
+<img align="left" alt="JavaScript" width="50px" src="https://raw.githubusercontent.com/github/explore/379d8d145b878a5b7a1c2a5b5800b1d82d5c8c8f/topics/javascript/javascript.png" />
 
-```html
-<span 
-    class="tooltip"
-    data-url="https://pl.wikipedia.org/wiki/J%C4%99zyk_skryptowy" 
-    data-tooltip-type="text"
-    data-tooltip-content="Język skryptowy (ang. script language) – język programowania obsługujący skrypty[1]. Często służący do kontrolowania określonej aplikacji."
->
-    skryptowy
-</span>
-```
+<img align="left" alt="HTML5" width="50px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png" />
 
-Zwiera mnóstwo informacji. Nam zależy na tym, aby za ich pomocą utworzyć poniższy element:
+<img align="left" alt="CSS3" width="50px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png" />
 
-```html
-<span 
-    class="tooltip"
-    ...
->
-    <a href="https://pl.wikipedia.org/wiki/J%C4%99zyk_skryptowy">
-        skryptowy
-    </a>
-    <span class="tooltip__box tooltip__box--text">
-        Język skryptowy (ang. script language) – język programowania obsługujący skrypty[1]. Często służący do kontrolowania określonej aplikacji.
-    </span>
-</span>
-```
+<img align="left" alt="Git" width="50px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png" />
 
-Zawartość elementu o klasie `.tooltip`, tj. tekst `skryptowy`, trzeba zamienić (nadpisać) na dwa elementy (dzieci). Należy zwrócić uwagę, że pierwszy z nich, `<a>`, zwiera tekst, który przed modyfikacją stanowi zawartość elementu o klasie `.tooltip`.
+<img align="left" alt="GitHub" width="50px" src="https://raw.githubusercontent.com/github/explore/78df643247d429f6cc873026c0622819ad797942/topics/github/github.png" />
 
-Musimy zatem dla każdego elementu o klasie `.tooltip` utworzyć dwoje dzieci, tj. `<a>` oraz `<span>`, z odpowiednimi atrybutami i zawartością, a następnie dodać je do `.tooltip`. Aby rozwiązać ten problem, użyj metody `.queyrSelectorAll()` i pętli  `for` lub metody `.forEach()`.
+<img align="left" alt="Terminal" width="50px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/terminal/terminal.png" />
 
-Zawartość dla elementów-dzieci pobierzesz z `dataset`:
+<img align="left" alt="Visual Studio Code" width="50px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png" />
 
- - adres dla linku => `.dataset.url`
- - typ tooltipa => `.dataset.tooltipType`
- - zawartość tooltipa => `.dataset.tooltipContent`.
+<br />
+<br />
+<br />
+<br />
 
-Zwrócić uwagę, że mamy **różne typy tooltipów**. Może to być tooltip tekstowy (`text`) oraz obrazkowy (`image`).
+## :blue_heart:  You can find me on:
+<br/>
 
-Jeśli tooltip jest typem obrazkowym, musi mieć inną strukturę:
-
-```html
-<a href="https://pl.wikipedia.org/wiki/Strona_internetowa">
-    stronach internetowych
-</a>
-<span class="tooltip__box tooltip__box--image">
-    <img class="tooltip__image" 
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Firefox_57.0.png/640px-Firefox_57.0.png">
-</span>
-```
-
-Jeśli prawidłowo wykonamy podmianę struktury, to po najechaniu kursorem na `.tooltip` powinniśmy obok elementu zobaczyć dodatkową informację:
-
-![](assets/img/example1.png)
-
-W zależności od typu tooltipa będzie ona inaczej wyglądać.
-
-### Problem 2: Wygenerowanie spisu treści na podstawie tablicy obiektów
-
-> Problem rozwiązujemy w pliku `./assets/js/list.js`.
-
-Otrzymaliśmy od klienta spis treści w formie tablicy obiektów.
-
-```javascript
-const list = [
-    {
-        id: 1,
-        parentId: null,
-        text: 'Zastosowanie',
-        link: '#Zastosowanie',
-    },
-    {
-        id: 44,
-        parentId: null,
-        text: 'Historia',
-        link: '#Historia',
-    },
-    {
-        id: 7,
-        parentId: 44,
-        text: 'Dialekty',
-        link: '#Dialekty',
-    },
-    {
-        id: 31,
-        parentId: 44,
-        text: 'Java',
-        link: '#Java',
-    },
-    {
-        id: 24,
-        parentId: null,
-        text: 'JavaScript dla WWW',
-        link: '#JavaScript_dla_WWW',
-
-    },
-    {
-        id: 10,
-        parentId: 24,
-        text: 'Interakcja',
-        link: '#Interakcja'
-    },
-    {
-        id: 25,
-        parentId: 24,
-        text: 'Osadzanie',
-        link: '#Osadzanie',
-    }
-];
-```
-
-Klient zaznaczył, że ta tablica może ulegać modyfikacji i nasze rozwiązanie musi być na tyle elastyczne, aby zmiana zawartości tablicy nie powodowała problemów z generowaniem spisu treści.
-
-Tablica ta zawiera obiekty z odpowiednimi danymi:
-
-```javascript
-{
-    id: 1,
-    parentId: null,
-    text: 'Zastosowanie',
-    link: '#Zastosowanie',
-}
-```
-
-gdzie:
-* **id** – unikalny identyfikator każdego elementu
-* **parentId** – id rodzica lub `null`; ten element określa, czy nasz obiekt jest dzieckiem (posiada ustawiony `parentId`), czy rodzicem (wówczas `parentId` ma wartość `null`)
-* **text** – zawartość tekstowa dla elementu `<a/>`
-* **link** – zawartość dla atrybutu `href` w `</a>`
-
-Na podstawie tych danych musimy wygenerować taki kod HTML:
-
-```html
-<ul>
-    <li data-id="1">
-        <a href="#Zastosowanie">Zastosowanie</a>
-        </li>
-    <li data-id="44">
-        <a href="#Historia">Historia</a>
-        <ul>
-            <li><a href="#Dialekty">Dialekty</a></li>
-            <li><a href="#Java">Java</a></li>
-        </ul>
-    </li>
-    <li data-id="24">
-        <a href="#JavaScript_dla_WWW">JavaScript dla WWW</a>
-        <ul>
-            <li><a href="#Interakcja">Interakcja</a></li>
-            <li><a href="#Osadzanie">Osadzanie</a></li>
-        </ul>
-    </li>
-    <li data-id="6">
-        <a href="Linki zewnętrzne">Przypisy</a>
-    </li>
-</ul>
-```
-
-i wstawić go do elementu `.article__list`.
-
-Głównym problemem jest tutaj różny poziom zagnieżdżenia tych elementów. Moglibyśmy rozróżnić dwa poziomy:
-
- 1. Pierwszy to ten, który dotyczy elementów o właściwości `.parentId` równej `null`.
- 2. Drugi poziom to elementy, które mają rodziców.
-
-#### Propozycja rozwiązania
-
-> Ten problem jest na tyle złożony, że można go rozwiązać na wiele sposobów. Ja zaproponuję jeden z nich, ale to nie oznacza, że nie można zrobić tego inaczej (i lepiej!).
-
-Najpierw generuję tylko elementy, które są na 1 poziomie zagnieżdżenia. Tutaj wykorzystuję `.forEach` lub pętlę `for` oraz warunek `if` wewnątrz iteracji. Sprawdzam tylko, czy `parentId` jest równe `null`. Jeśli tak, to tworzę odpowiednią zawartość, a do `dataset.id` dopisuję id elementu – aby potem wiedzieć, jaki ten element ma identyfikator. 
-
-Wygenerowany kod powinien wyglądać mniej więcej tak:
-
-```html
-<li data-id="44"><a href="#Historia">Historia</a></li>
-```
-
-Następnie wyszukuję w dokumencie wszystkie `li` znajdujące się w odpowiedniej sekcji i znów wykorzystuję pętlę, aby odnieść się do każdego elementu z osobna.
-
-Wewnątrz tej pętli mogę pobrać `id` danego elementu np. przez `const id = Number(item.dataset.id)`.
-
-Następnie w tablicy `list` wyszukuję wszystkie obiekty, które posiadają `parentId` równy pobranemu `id`.
-
-Mogę to zrobić za pomocą metody [`.filter()`](https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Obiekty/Array/filter) wykonanej na tablicy.
-
-```javascript
-const children = list.filter(function(element) {
-    return element.parentId === id
-});
-```
-
-Dzięki temu rozwiązaniu wiem, jakie elementy muszę utworzyć dla tego zagnieżdżenia (pamiętaj, że może ich nie być w ogóle). Znów piszę kod, który tworzy mi `ul` oraz pętlę dla `li`.
-
-Efekt działania naszego kodu powinien być taki jak zakomentowany kod HTML w odpowiedniej sekcji.
-
-Spis treści natomiast ma prezentować się mniej więcej tak:
-
-![](assets/img/example2.png)
-
-Po kliknięciu w element listy powinieneś zostać przekierowany do odpowiedniego nagłówka w treści strony. 
-
-Płynne przejście jest realizowane przez CSS! Zobacz reguły CSS przypisane do znacznika `html`.
-
-
-&nbsp;
-
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+[<img align="left" alt="Katarzyna Dworak LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />](https://www.linkedin.com/in/katarzynadworakk/)
