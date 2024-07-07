@@ -1,5 +1,8 @@
 # Thanks for viewing my Project ✨
 
+![ a main page screenshot](./assets/img/screen.png)
+<br />
+
 ## :star: Demonstration of the Project: ([Dynamic Menu Tooltips JS](https://katarzynadworak.github.io/dynamic-menu-tooltips-js/))
 <br />
 
