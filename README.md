@@ -1,6 +1,6 @@
 # Thanks for viewing my Project ✨
 
-## :star: Demonstration of the Project: ([Dynamic Gallery Slider](https://katarzynadworak.github.io/dynamic-gallery-slider/))
+## :star: Demonstration of the Project: ([Dynamic Menu Tooltips JS](https://katarzynadworak.github.io/dynamic-gallery-slider/))
 <br />
 
 ## Main goal of my work was to:
