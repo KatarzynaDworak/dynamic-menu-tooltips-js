@@ -4,10 +4,15 @@
 <br />
 
 ## Main goal of my work was to:
+
 **1. Dynamic Menu Creation**: develop a dynamic, multi-level menu system that can handle hierarchical data and render it appropriately in the DOM.
-**2. Tooltip Enhancement**: implement a robust tooltip system that provides additional information or imagery when users hover over elements.
+
+**2. Tooltip Enhancement**: implement a robust tooltip system that provides additional information or imagery when users hover over elements. 
+
 **3. Efficient DOM Manipulation: use efficient techniques to manipulate the DOM**, ensuring high performance and a responsive user interface.
+
 **4. Modular Code Structure**: create modular, reusable functions to enhance code readability, maintainability, and scalability.
+
 **5. Interactive User Experience**: enhance user interaction with dynamic elements that respond to user actions, providing a seamless experience.
 
 <br />
