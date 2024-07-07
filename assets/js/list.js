@@ -76,12 +76,12 @@ liElementList.forEach(function(parent) {
 })
 
 function createMenu (el, parent) {
-    const liElement = document.createElement('li'); //
-    liElement.setAttribute('data-id', el.id); //
-    const aElement = document.createElement('a'); //
-    liElement.appendChild(aElement); //
-    aElement.innerText = el.text; //
-    aElement.setAttribute('href', el.link); //
+    const liElement = document.createElement('li');
+    liElement.setAttribute('data-id', el.id); 
+    const aElement = document.createElement('a'); 
+    liElement.appendChild(aElement); 
+    aElement.innerText = el.text; 
+    aElement.setAttribute('href', el.link); 
     //dodanie menu do elementu .article__list
     parent.appendChild(liElement); //
 }
