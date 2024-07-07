@@ -4,133 +4,103 @@
 <br />
 
 ## Main goal of my work was to:
-1. **Interactive UI Elements:** create dynamic and interactive user interface elements using JavaScript, enhancing user engagement and experience.
-2. **Data Handling and Manipulation:** efficiently manage data through manipulation and processing techniques to ensure optimal performance and functionality.
-3. **Event-Driven Programming:** implement event-driven programming paradigms to respond to user actions and system events seamlessly.
-4. **Modular and Scalable Architecture:** develop a modular and scalable architecture using JavaScript design patterns to facilitate code maintenance and future enhancements.
-5. **Responsive Design Integration:** integrate responsive design principles to ensure compatibility and usability across various devices and screen sizes.
-6. **Documentation and Code Quality:** maintain high-quality code standards and provide comprehensive documentation for easy understanding and collaboration.
+**1. Dynamic Menu Creation**: develop a dynamic, multi-level menu system that can handle hierarchical data and render it appropriately in the DOM.
+**2. Tooltip Enhancement**: implement a robust tooltip system that provides additional information or imagery when users hover over elements.
+Efficient DOM Manipulation:
+**3. Use efficient techniques to manipulate the DOM**, ensuring high performance and a responsive user interface.
+**4. Modular Code Structure**: create modular, reusable functions to enhance code readability, maintainability, and scalability.
+**5. Interactive User Experience**: enhance user interaction with dynamic elements that respond to user actions, providing a seamless experience.
+
 <br />
 
 ## Solutions provided in the project
-**1. Interactive UI Elements:**
-Example: Implementing a carousel/slider functionality with smooth transitions and interactive controls.
+**1. Dynamic Menu Creation:**
+Example: Automatically generating nested lists based on a hierarchical data structure.
 
-   const initSlider = function() {
-       const sliderItems = document.querySelectorAll('.slider-item');
-       const nextBtn = document.querySelector('.next-btn');
-       const prevBtn = document.querySelector('.prev-btn');
-       
-       let currentIndex = 0;
-       
-       nextBtn.addEventListener('click', () => {
-           currentIndex = (currentIndex + 1) % sliderItems.length;
-           updateSlider();
-       });
-       
-       prevBtn.addEventListener('click', () => {
-           currentIndex = (currentIndex - 1 + sliderItems.length) % sliderItems.length;
-           updateSlider();
-       });
-       
-       function updateSlider() {
-           sliderItems.forEach((item, index) => {
-               item.style.display = index === currentIndex ? 'block' : 'none';
-           });
-       }
-       
-       updateSlider();
-   }
-   
-   document.addEventListener('DOMContentLoaded', initSlider);
+         const list = [
+               { id: 1, parentId: null, text: 'Usage', link: '#Usage' },
+               { id: 44, parentId: null, text: 'History', link: '#History' },
+               { id: 7, parentId: 44, text: 'Dialects', link: '#Dialects' },
+               { id: 31, parentId: 44, text: 'Java', link: '#Java' },
+               { id: 24, parentId: null, text: 'JavaScript for WWW', link: '#JavaScript_for_WWW' },
+               { id: 10, parentId: 24, text: 'Interaction', link: '#Interaction' },
+               { id: 25, parentId: 24, text: 'Embedding', link: '#Embedding' }
+         ];
+         
+         const ulElement = document.querySelector('.article__list');
+         
+         list.forEach(function(el) {
+             if(el.parentId === null) {
+                 createMenu(el, ulElement);
+             }
+         });
+         
+         const liElementList = ulElement.querySelectorAll('li');
+         
+         liElementList.forEach(function(parent) {
+             const id = Number(parent.dataset.id);
+             const children = list.filter(function(element) {
+                 return element.parentId === id;
+             });
+         
+             if(children.length > 0) {
+                 const ulElement = document.createElement('ul');
+                 children.forEach(function(child) {
+                     createMenu(child, ulElement);
+                 });
+                 parent.appendChild(ulElement);
+             }
+         });
+         
+         function createMenu (el, parent) {
+             const liElement = document.createElement('li');
+             liElement.setAttribute('data-id', el.id);
+             const aElement = document.createElement('a');
+             liElement.appendChild(aElement);
+             aElement.innerText = el.text;
+             aElement.setAttribute('href', el.link);
+             parent.appendChild(liElement);
+         }
+**2. Tooltip Enhancement:**
+Example: Creating a tooltip system that provides both text and image tooltips.
 
-**2. Data Handling and Manipulation:**
-Example: Filtering and manipulating arrays of data based on user input or predefined conditions.
-
-      const data = [
-          { id: 1, name: 'John', age: 30 },
-          { id: 2, name: 'Jane', age: 25 },
-          { id: 3, name: 'Doe', age: 35 }
-      ];
-      
-      const filteredData = data.filter(item => item.age > 30);
-      console.log(filteredData);
-      Event-Driven Programming:
-      
-      Example: Handling form submissions and validating user inputs using event listeners.
-      javascript
-      Skopiuj kod
-      const form = document.querySelector('form');
-      
-      form.addEventListener('submit', function(event) {
-          event.preventDefault();
-          const formData = new FormData(this);
-          const username = formData.get('username');
-          const password = formData.get('password');
-          
-          // Validate username and password
-          if (username && password) {
-              // Process form data
-              console.log('Username:', username);
-              console.log('Password:', password);
-          } else {
-              console.error('Invalid username or password');
-          }
-      });
-**3. Modular and Scalable Architecture:***
-Example: Using ES6 modules or JavaScript classes to encapsulate functionality and promote code reusability.
-
-      // Module 1: Utilities.js
-      export const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
-      
-      // Module 2: User.js
-      import { capitalize } from './Utilities.js';
-      
-      export class User {
-          constructor(name) {
-              this.name = capitalize(name);
-          }
-          
-          greet() {
-              console.log(`Hello, ${this.name}!`);
-          }
-      }
-      
-      // Usage
-      import { User } from './User.js';
-      
-      const user1 = new User('john');
-      user1.greet(); // Output: Hello, John!
-   
-**4. Responsive Design Integration:**
-Example: Using CSS media queries and JavaScript to adapt the layout and behavior based on screen size.
-
-      /* styles.css */
-      @media screen and (max-width: 768px) {
-          .container {
-              flex-direction: column;
-          }
-      }
-
-**5. Documentation and Code Quality:**
-Example: Providing clear comments, README files, and inline documentation to enhance code readability and facilitate collaboration.
-javascript
-
-       // Function to calculate factorial
-       const factorial = (n) => {
-          // Check for negative numbers
-          if (n < 0) {
-              throw new Error('Factorial of negative numbers is undefined');
-          }
-       
-       // Base case: factorial of 0 is 1
-       if (n === 0) {
-           return 1;
-       }
-       
-       // Recursive case
-       return n * factorial(n - 1);
-       }
+         const tooltipList = document.querySelectorAll('span');
+         
+         tooltipList.forEach(function(element) {
+             prepareTooltip(element);
+         });
+         
+         function prepareTooltip(el) {
+             const address = el.dataset.url;
+             const type = el.dataset.tooltipType;
+             const content = el.dataset.tooltipContent;
+         
+             createTooltipText(el, address, type, content);
+         }
+         
+         function createTooltipText (el, address, type, content) {
+             el.removeAttribute('data-url');
+             el.removeAttribute('data-tooltip-type');
+             el.removeAttribute('data-tooltip-content');
+         
+             const aElement = document.createElement('a');
+             const spanElement = document.createElement('span');
+             el.appendChild(aElement);
+             el.appendChild(spanElement);
+             
+             aElement.setAttribute('href', address);
+         
+             if(type === 'text') {
+                 spanElement.className = 'tooltip__box tooltip__box--text';
+                 spanElement.innerText = content;
+             } else if(type === 'image') {
+                 spanElement.className = 'tooltip__box tooltip__box--image';
+                 const imageElement = document.createElement('img');
+                 spanElement.appendChild(imageElement);
+                 imageElement.className = 'tooltip__image';
+                 imageElement.setAttribute('src', content);
+             }
+         }
 <br />
 <br />
 
