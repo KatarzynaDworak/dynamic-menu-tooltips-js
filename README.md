@@ -1,6 +1,6 @@
 # Thanks for viewing my Project ✨
 
-![ a main page screenshot](./assets/img/screen.png)
+![ a main page screenshot](./assets/img/screen1.png)
 <br />
 
 ## :star: Demonstration of the Project: ([Dynamic Menu Tooltips JS](https://katarzynadworak.github.io/dynamic-menu-tooltips-js/))
@@ -113,7 +113,7 @@ Example: Creating a tooltip system that provides both text and image tooltips.
 
 ## 🛠️ Languages and Tools used: 
 
-<img align="left" alt="JavaScript" width="50px" src="https://raw.githubusercontent.com/github/explore/379d8d145b878a5b7a1c2a5b5800b1d82d5c8c8f/topics/javascript/javascript.png" />
+<img align="left" alt="JavaScript" width="50px" src="https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png" />
 
 <img align="left" alt="HTML5" width="50px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png" />
 
@@ -141,4 +141,5 @@ Example: Creating a tooltip system that provides both text and image tooltips.
 <br />
 
 ### Thanks
-To my Mentor - devmentor.pl – for creating the task and for the code review.
+To my Mentor - [devmentor.pl](https://devmentor.pl/) – for creating the task and for the code review.
+If you have any questions feel free to get in touch with me (contact in the [profile readme](https://github.com/katarzynadworak)).
