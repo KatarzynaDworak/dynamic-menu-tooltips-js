@@ -1,12 +1,5 @@
 # Thanks for viewing my Project ✨
-
-![ a main page screenshot](./assets/img/screen.png)
-<br />
-
-
-
 https://github.com/KatarzynaDworak/dynamic-menu-tooltips-js/assets/147186733/478d73e7-9740-4d35-9054-45a2f2e51c32
-
 
 
 ## :star: Demonstration of the Project: ([Dynamic Menu Tooltips JS](https://katarzynadworak.github.io/dynamic-menu-tooltips-js/))
