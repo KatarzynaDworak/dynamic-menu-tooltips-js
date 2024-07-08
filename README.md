@@ -1,6 +1,6 @@
 # Thanks for viewing my Project ✨
 
-![ a main page screenshot](./assets/img/screen1.png)
+![ a main page screenshot](./assets/img/screen.png)
 <br />
 
 ## :star: Demonstration of the Project: ([Dynamic Menu Tooltips JS](https://katarzynadworak.github.io/dynamic-menu-tooltips-js/))
@@ -142,4 +142,5 @@ Example: Creating a tooltip system that provides both text and image tooltips.
 
 ### Thanks
 To my Mentor - [devmentor.pl](https://devmentor.pl/) – for creating the task and for the code review.
+
 If you have any questions feel free to get in touch with me (contact in the [profile readme](https://github.com/katarzynadworak)).
